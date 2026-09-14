@@ -16,5 +16,5 @@ public:
 
 	std::string Talk();
 
-	void Update() override;
+	//void Update() override;
 };
