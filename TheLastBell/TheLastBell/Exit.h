@@ -14,7 +14,7 @@ private:
 	bool locked;
 	std::string requiredKeyName;
 
-	//int timeCost;
+	int timeCost;
 
 public:
 	Exit(Direction direction, Room* origin, Room* destination, bool locked = false, const std::string& requiredKeyName = "");
@@ -26,6 +26,9 @@ public:
 	bool IsLocked() const;
 	void Unlock();
 	const std::string& GetRequiredKeyName() const;
+
+	int GetTimeCost() const;
+	void SetTimeCost(int minutes);
 
 	static std::string DirectionToString(Direction direction);
 	static bool TryReadDirection(const std::string& text, Direction& outDirection);

@@ -3,6 +3,7 @@
 
 World::World()
     : targetRoom(nullptr)
+    , clock(1440)
     , isRunning(false)
 {
 }
@@ -89,6 +90,8 @@ void World::Init()
 
 void World::PrintCurrentRoom() const
 {
+    std::cout << "\n[Hora: " << clock.GetFormattedTime()
+        << " | Quedan " << clock.GetRemainingMinutes() << " min para medianoche]\n";
     std::cout << "\n" << player->GetLocation()->GetFullDescription() << "\n";
 }
 
@@ -105,12 +108,32 @@ void World::PrintHelp() const
         << "  salir                     - termina la partida\n";
 }
 
+void World::SpendTime(int minutes)
+{
+    clock.Advance(minutes);
+    std::cout << "(Te ha costado " << minutes << " min. Son las " << clock.GetFormattedTime() << ")\n";
+    CheckEndConditions();
+}
 
 void World::CheckEndConditions()
 {
     if (!isRunning)
     {
         return;
+    }
+
+    if (player->GetLocation() == targetRoom)
+    {
+        std::cout << "\nHas llegado al " << targetRoom->GetName()
+            << " a las " << clock.GetFormattedTime() << ". ¡Lo has conseguido!\n";
+        Stop();
+        return;
+    }
+
+    if (clock.HasExpired())
+    {
+        std::cout << "\nEl reloj marca medianoche... no has llegado a tiempo.\n";
+        Stop();
     }
 
 }
@@ -177,15 +200,24 @@ void World::ExecuteCommand(const Command& command)
     }
     else if (command.verb == "pickup")
     {
-        player->PickUp(command.target);
+        if (player->PickUp(command.target))
+        {
+            SpendTime(TimeCost::PickUp);
+        }
     }
     else if (command.verb == "drop")
     {
-        player->Drop(command.target);
+        if (player->Drop(command.target))
+        {
+            SpendTime(TimeCost::Drop);
+        }
     }
     else if (command.verb == "put")
     {
-        player->PutInside(command.target, command.targetTwo);
+        if (player->PutInside(command.target, command.targetTwo))
+        {
+            SpendTime(TimeCost::PutInside);
+        }
     }
     else if (command.verb == "talk")
     {
@@ -196,6 +228,7 @@ void World::ExecuteCommand(const Command& command)
             {
                 std::cout << npc->Talk() << "\n";
                 found = true;
+                SpendTime(TimeCost::Talk);
                 break;
             }
         }

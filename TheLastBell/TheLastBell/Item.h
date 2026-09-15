@@ -14,4 +14,7 @@ public:
 
 	bool CanContainItems() const;
 
+	int GetTimeBonus() const;
+	void SetTimeBonus(int minutes);
+
 };

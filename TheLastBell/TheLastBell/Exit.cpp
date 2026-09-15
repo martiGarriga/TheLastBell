@@ -6,7 +6,7 @@ Exit::Exit(Direction direction, Room* origin, Room* destination, bool locked, co
 , destination(destination)
 , locked(locked)
 , requiredKeyName(requiredKeyName)
-//, timeCost(10)
+, timeCost(10)
 {}
 
 Direction Exit::GetDirection() const {
@@ -31,6 +31,16 @@ void Exit::Unlock() {
 
 const std::string& Exit::GetRequiredKeyName() const {
 	return requiredKeyName;
+}
+
+int Exit::GetTimeCost() const
+{
+	return timeCost;
+}
+
+void Exit::SetTimeCost(int minutes)
+{
+	timeCost = minutes;
 }
 
 std::string Exit::DirectionToString(Direction direction) {

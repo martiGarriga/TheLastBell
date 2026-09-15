@@ -8,6 +8,14 @@
 #include "Player.h"
 #include "CommandReader.h"
 #include "Item.h"
+#include "GameClock.h"
+
+namespace TimeCost {
+    constexpr int PickUp = 5;
+    constexpr int Drop = 2;
+    constexpr int PutInside = 3;
+    constexpr int Talk = 5;
+}
 
 
 class World {
@@ -18,6 +26,7 @@ private:
     std::unique_ptr<Player> player;
 
     Room* targetRoom;
+    GameClock clock;
 
     bool isRunning;
 
@@ -30,6 +39,7 @@ private:
     void ExecuteCommand(const Command& command);
     void PrintHelp() const;
 
+    void SpendTime(int minutes);
     void CheckEndConditions();
 
 public:
