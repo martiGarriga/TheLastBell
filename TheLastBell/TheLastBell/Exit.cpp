@@ -9,27 +9,33 @@ Exit::Exit(Direction direction, Room* origin, Room* destination, bool locked, co
 , timeCost(10)
 {}
 
-Direction Exit::GetDirection() const {
+Direction Exit::GetDirection() const 
+{
 	return direction;
 }
 
-Room* Exit::GetOrigin() const {
+Room* Exit::GetOrigin() const 
+{
 	return origin;
 }
 
-Room* Exit::GetDestination()const {
+Room* Exit::GetDestination()const 
+{
 	return destination;
 }
 
-bool Exit::IsLocked() const {
+bool Exit::IsLocked() const 
+{
 	return locked;
 }
 
-void Exit::Unlock() {
+void Exit::Unlock() 
+{
 	locked = false;
 }
 
-const std::string& Exit::GetRequiredKeyName() const {
+const std::string& Exit::GetRequiredKeyName() const 
+{
 	return requiredKeyName;
 }
 
@@ -46,17 +52,18 @@ void Exit::SetTimeCost(int minutes)
 std::string Exit::DirectionToString(Direction direction) {
 	switch (direction)
 	{
-	case Direction::North: return "north";
-	case Direction::South: return "south";
-	case Direction::East: return "east";
-	case Direction::West: return "west";
-	case Direction::Up: return "up";
-	case Direction::Down: return "down";
-	default: return "unknown";
+		case Direction::North: return "north";
+		case Direction::South: return "south";
+		case Direction::East: return "east";
+		case Direction::West: return "west";
+		case Direction::Up: return "up";
+		case Direction::Down: return "down";
+		default: return "unknown";
 	}
 }
 
-bool Exit::TryReadDirection(const std::string& text, Direction& outDirection) {
+bool Exit::TryReadDirection(const std::string& text, Direction& outDirection) 
+{
 	if (text == "north" || text == "n") { outDirection = Direction::North; return true; }
 	if (text == "south" || text == "s") { outDirection = Direction::South; return true; }
 	if (text == "east" || text == "e") { outDirection = Direction::East;  return true; }

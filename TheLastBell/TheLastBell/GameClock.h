@@ -2,7 +2,8 @@
 
 #include <string>
 
-class GameClock {
+class GameClock 
+{
 private:
     int currentMinutes;
     int deadlineMinutes;

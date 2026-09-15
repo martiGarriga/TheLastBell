@@ -10,7 +10,8 @@
 #include "Item.h"
 #include "GameClock.h"
 
-namespace TimeCost {
+namespace TimeCost 
+{
     constexpr int PickUp = 5;
     constexpr int Drop = 2;
     constexpr int PutInside = 3;
@@ -18,7 +19,8 @@ namespace TimeCost {
 }
 
 
-class World {
+class World 
+{
 private:
     std::vector<std::unique_ptr<Room>> rooms;
     std::vector<std::unique_ptr<Exit>> exits;

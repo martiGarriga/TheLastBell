@@ -5,7 +5,8 @@
 
 class Room;
 
-class Exit : public Entity {
+class Exit : public Entity 
+{
 private:
 	Direction direction;
 	Room* origin;

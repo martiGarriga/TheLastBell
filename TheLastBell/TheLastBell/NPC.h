@@ -4,7 +4,8 @@
 #include <vector>
 #include <string>
 
-class NPC : public Creature {
+class NPC : public Creature 
+{
 private:
 	std::vector<std::string> dialogueScript;
 	size_t nextLine;
@@ -15,5 +16,4 @@ public:
 	void AddDialogueLine(const std::string& line);
 
 	std::string Talk();
-
 };

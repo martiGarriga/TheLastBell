@@ -5,8 +5,10 @@
 
 Player::Player(const std::string& name, Room* location) : Creature(EntityType::Player, name, "Player.", location) {}
 
-bool Player::PickUp(const std::string& itemName) {
-	if (location == nullptr) {
+bool Player::PickUp(const std::string& itemName) 
+{
+	if (location == nullptr) 
+	{
 		return false;
 	}
 
@@ -25,15 +27,18 @@ bool Player::PickUp(const std::string& itemName) {
 	return true;
 }
 
-bool Player::Drop(const std::string& itemName) {
+bool Player::Drop(const std::string& itemName) 
+{
 	Entity* found = FindEntity(itemName);
-	if (found == nullptr) {
+	if (found == nullptr) 
+	{
 		std::cout << "You dont have any \"" << itemName << "\" in your inventary. \n";
 		return false;
 	}
 
 	std::unique_ptr<Entity> item = RemoveEntity(itemName);
-	if (item == nullptr || location == nullptr) {
+	if (item == nullptr || location == nullptr) 
+	{
 		return false;
 	}
 
@@ -44,31 +49,37 @@ bool Player::Drop(const std::string& itemName) {
 
 bool Player::PutInside(const std::string& itemName, const std::string& containerName) {
 	Entity* container = FindEntity(containerName);
-	if (container == nullptr) {
+	if (container == nullptr) 
+	{
 		std::cout << "You dont have any \"" << containerName << "\".\n";
 		return false;
 	}
 
-	if (container->GetType() != EntityType::Item) {
+	if (container->GetType() != EntityType::Item) 
+	{
 		std::cout << containerName << "it can't storage anything. \n";
 	}
 
 	Item* containerItem = static_cast<Item*>(container);
-	if (!containerItem->CanContainItems()) {
+	if (!containerItem->CanContainItems()) 
+	{
 		std::cout << containerName << " it can't storage anything else. \n";
 	}
 
 	Entity* itemToMove = FindEntity(itemName);
-	if (itemToMove == nullptr) {
+	if (itemToMove == nullptr) 
+	{
 		std::cout << "You dont have any \"" << containerName << "\".\n";
 	}
 
-	if (itemToMove == container) {
+	if (itemToMove == container) 
+	{
 		std::cout << " You can't put items inside itself.\n";
 	}
 
 	std::unique_ptr<Entity> item = RemoveEntity(itemName);
-	if (item == nullptr) {
+	if (item == nullptr) 
+	{
 		return false;
 	}
 
@@ -77,13 +88,15 @@ bool Player::PutInside(const std::string& itemName, const std::string& container
 	return true;
 }
 
-void Player::ListInventory() const {
+void Player::ListInventory() const 
+{
 	if (IsEmpty()) {
 		std::cout << "You aren't carrying anything. \n";
 	}
 
 	std::cout << "Llevas: \n";
-	for (const std::unique_ptr<Entity>& entity : GetContents()) {
+	for (const std::unique_ptr<Entity>& entity : GetContents()) 
+	{
 		std::cout << "  - " << entity->GetName() << "\n";
 	}
 }

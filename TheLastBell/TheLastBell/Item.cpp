@@ -6,7 +6,8 @@ Item::Item(const std::string& name, const std::string& description, bool canCont
 
 {}
 
-bool Item::CanContainItems() const {
+bool Item::CanContainItems() const 
+{
 	return canContainItems;
 }
 

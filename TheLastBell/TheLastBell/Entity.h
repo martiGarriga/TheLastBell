@@ -6,7 +6,8 @@
 #include <memory>
 #include <string>
 
-class Entity {
+class Entity 
+{
 protected:
 	EntityType type;
 	std::string name;

@@ -8,20 +8,24 @@ GameClock::GameClock(int deadlineMinutes)
 {
 }
 
-void GameClock::Advance(int minutes) {
+void GameClock::Advance(int minutes) 
+{
     currentMinutes += minutes;
 }
 
-bool GameClock::HasExpired() const {
+bool GameClock::HasExpired() const 
+{
     return currentMinutes >= deadlineMinutes;
 }
 
-int GameClock::GetRemainingMinutes() const {
+int GameClock::GetRemainingMinutes() const 
+{
     int remaining = deadlineMinutes - currentMinutes;
     return remaining > 0 ? remaining : 0;
 }
 
-std::string GameClock::GetFormattedTime() const {
+std::string GameClock::GetFormattedTime() const 
+{
     int hours = currentMinutes / 60;
     int minutes = currentMinutes % 60;
 

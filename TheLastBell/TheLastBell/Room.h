@@ -5,7 +5,8 @@
 
 class Exit;
 
-class Room : public Entity {
+class Room : public Entity 
+{
 private:
 	std::vector<Exit*> exits;
 

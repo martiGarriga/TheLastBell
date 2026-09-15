@@ -5,7 +5,8 @@
 class Room;
 
 //Class to create specific location to the future heirs Player and NPC
-class Creature : public Entity {
+class Creature : public Entity 
+{
 protected:
 	Room* location; //dont posseses the room location
 

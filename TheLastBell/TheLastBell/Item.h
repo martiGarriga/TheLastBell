@@ -3,7 +3,8 @@
 #include "Entity.h"
 
 //Since Item inherits from Entity, we can make an Entity contain an Entity using the "content" variable.
-class Item : public Entity {
+class Item : public Entity 
+{
 private:
 	bool canContainItems;
 
