@@ -1,8 +1,11 @@
-#include <iostream>
+#include "World.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	World world;
+	world.Init();
+	world.Run();
+	return 0;
 }
 
 
