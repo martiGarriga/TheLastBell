@@ -90,24 +90,24 @@ void World::Init()
 
     //Objects
     CreateItemInRoom(*clearing, "letter", "A short letter: 'Reach the Dawn Gate before midnight.'");
-    CreateItemInRoom(*clearing, "backpack", "An old but useful backpack for the trip", true);
+    CreateItemInRoom(*clearing, "backpack", "An old but useful backpack for the trip.", true);
     CreateItemInRoom(*village, "rusty key", "An old iron key covered in rust.");
     CreateItemInRoom(*village, "lantern", "A small oil lantern. It still has enough oil to burn.");
 
     //NPC
     NPC* crow = CreateNPC("crow", "A black crow watches you from a low branch.", forest);
-    crow->AddDialogueLine("Crow: The bells will ring twelve times tonight.");
-    crow->AddDialogueLine("Crow: The old sanctuary lies beyond the village gate.");
+    crow->AddDialogueLine("Crow: The bells will ring twelve times tonight...");
+    crow->AddDialogueLine("Crow: The old sanctuary lies beyond the village gate...");
     crow->AddDialogueLine("Crow: The guardian still waits beneath the hill.");
 
     NPC* villager = CreateNPC("villager", "An old villager sits silently beside an abandoned house.", village);
-    villager->AddDialogueLine("Villager: The Dawn Gate is at the top of the tower.");
-    villager->AddDialogueLine("Villager: The sanctuary gate has been locked for years.");
+    villager->AddDialogueLine("Villager: The Dawn Gate is at the top of the tower...");
+    villager->AddDialogueLine("Villager: The sanctuary gate has been locked for years...");
     villager->AddDialogueLine("Villager: I think the old key is still somewhere in this village.");
 
     NPC* guardian = CreateNPC("guardian", "An old guardian waits in the darkness beneath the sanctuary.", cave);
-    guardian->AddDialogueLine("Guardian: You came before the final bell.");
-    guardian->AddDialogueLine("Guardian: The king hide a stone in the sanctuary.");
+    guardian->AddDialogueLine("Guardian: You came before the final bell...");
+    guardian->AddDialogueLine("Guardian: The king hid a stone in the sanctuary...");
     guardian->AddDialogueLine("Guardian: Bring that light to the kings statue and use the power of the stone to reach the Dawn Gate.");
 
     targetRoom = exitRoom;
@@ -161,7 +161,7 @@ void World::CheckEndConditions()
         std::cout << "\nYou reach the Dawn Gate at " << clock.GetHMTime() << ".\n";
         std::cout << "You step beyond Valdren just before the final bell.\n";
         std::cout << "YOU ESCAPED. VICTORY!\n";
-        Stop();
+        std::cout << "Type 'exit' to close de window.\n";
         return;
     }
 
@@ -285,12 +285,12 @@ void World::ExecuteCommand(const Command& command)
 
         if (room->GetName() == "Old Sanctuary" && itemName == "lantern")
         {
-            if (room->FindEntity("stone") == nullptr)
+            if (room->FindEntity("king's stone") == nullptr)
             {
                 std::cout << "You bring the light closer to the statue of the king.\n";
                 std::cout << "At the foot of the statue, a stone with a magical aura is revealed.\n";
                 std::cout << "The King's Stone reveals itself to you.\n";
-                CreateItemInRoom(*room, "stone", "A small glowing stone, hidden inside the king's statue.");
+                CreateItemInRoom(*room, "king's stone", "A small glowing stone, hidden inside the king's statue.");
             }
             else
             {
@@ -301,7 +301,7 @@ void World::ExecuteCommand(const Command& command)
         }
 
         // The stone opens the magical barrier on the bridge.
-        if (room->GetName() == "Stone Bridge" && itemName == "stone")
+        if (room->GetName() == "Stone Bridge" && itemName == "king's stone")
         {
             Exit* towerExit = room->GetExit(Direction::North);
             if (towerExit && towerExit->IsLocked())
@@ -315,7 +315,7 @@ void World::ExecuteCommand(const Command& command)
         }
 
         // The stone opens the final gate.
-        if (room->GetName() == "The Tower" && itemName == "stone")
+        if (room->GetName() == "The Tower" && itemName == "king's stone")
         {
             Exit* gate = room->GetExit(Direction::Up);
             if (gate && gate->IsLocked())
@@ -333,11 +333,12 @@ void World::ExecuteCommand(const Command& command)
             std::cout << "If you are reading this, the curse has already begun.\n";
             std::cout << "The Dawn Gate is the only way out.\n";
             std::cout << "Find the old guardian.He knows how to open it.\n";
-            std::cout << "Do not trust the tower keeper.\n";
         }
-
-        std::cout << "You cannot find a useful way to use the " << itemName << " here.\n";
-        SpendTime(TimeCost::Use);
+        else 
+        {
+            std::cout << "You cannot find a useful way to use the " << itemName << " here.\n";
+            SpendTime(TimeCost::Use);
+        }
     }
     else if (command.verb == "talk")
     {
