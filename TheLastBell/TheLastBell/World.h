@@ -14,8 +14,9 @@ namespace TimeCost
 {
     constexpr int PickUp = 5;
     constexpr int Drop = 2;
-    constexpr int PutInside = 3;
+    constexpr int PutInside = 1;
     constexpr int Talk = 5;
+    constexpr int Use = 3;
 }
 
 

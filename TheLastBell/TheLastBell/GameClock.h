@@ -16,6 +16,6 @@ public:
     int GetRemainingMinutes() const;
 
     // Devuelve la hora formateada como "HH:MM"
-    std::string GetFormattedTime() const;
+    std::string GetHMTime() const;
 };
 

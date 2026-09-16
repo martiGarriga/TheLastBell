@@ -3,7 +3,7 @@
 #include <iomanip>
 
 GameClock::GameClock(int deadlineMinutes)
-    : currentMinutes(0)
+    : currentMinutes(1200)
     , deadlineMinutes(deadlineMinutes)
 {
 }
@@ -24,7 +24,7 @@ int GameClock::GetRemainingMinutes() const
     return remaining > 0 ? remaining : 0;
 }
 
-std::string GameClock::GetFormattedTime() const 
+std::string GameClock::GetHMTime() const 
 {
     int hours = currentMinutes / 60;
     int minutes = currentMinutes % 60;

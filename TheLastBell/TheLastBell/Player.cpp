@@ -94,7 +94,7 @@ void Player::ListInventory() const
 		std::cout << "You aren't carrying anything. \n";
 	}
 
-	std::cout << "Llevas: \n";
+	std::cout << "You carry: \n";
 	for (const std::unique_ptr<Entity>& entity : GetContents()) 
 	{
 		std::cout << "  - " << entity->GetName() << "\n";

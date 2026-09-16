@@ -11,7 +11,7 @@ std::string NPC::Talk()
 {
 	if (dialogueScript.empty()) 
 	{
-		return GetName() + " He/She has nothing to say."; //Implementar genero
+		return GetName() + " He/She has nothing to say."; 
 	}
 
 	const std::string& line = dialogueScript[nextLine];

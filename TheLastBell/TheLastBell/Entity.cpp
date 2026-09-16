@@ -50,7 +50,14 @@ Entity* Entity::FindEntity(const std::string& name) const
 		{
 			return entity.get();
 		}
+
+		Entity* found = entity->FindEntity(name);
+		if (found != nullptr) 
+		{
+			return found;
+		}
 	}
+
 	return nullptr;
 }
 

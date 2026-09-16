@@ -2,7 +2,7 @@
 
 Item::Item(const std::string& name, const std::string& description, bool canContainItems) : Entity(EntityType::Item, name, description)
 , canContainItems(canContainItems)
-, timeBonus(0)
+//, timeBonus(0)
 
 {}
 
